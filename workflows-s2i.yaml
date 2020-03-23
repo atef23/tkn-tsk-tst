@@ -10,7 +10,7 @@ spec:
     - default: .
       description: The location of the path to run s2i from.
       name: PATH_CONTEXT
-    - default: 'true'
+    - default: 'false'
       description: Verify the TLS on the registry endpoint (for push/pull to a non-TLS
         registry)
       name: TLSVERIFY
@@ -39,7 +39,9 @@ spec:
     image: quay.io/openshift-pipeline/s2i:nightly
     name: generate
     volumeMounts:
-    workingDir: /opt/sms
+      - mountPath: /gen-source
+        name: gen-source
+    workingDir: /workspace/source
   - command:
     - buildah
     - bud
