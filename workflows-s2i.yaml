@@ -34,6 +34,10 @@ spec:
     - -e S2I_SOURCE_NOTEBOOK_LIST=$(inputs.params.S2I_SOURCE_NOTEBOOK_LIST)
     - $(inputs.params.PATH_CONTEXT)
     - $(inputs.params.BUILDER_IMAGE)
+    - --image-scripts-url
+    - image:///opt/sms/.s2i/
+    - --scripts-url
+    - image:///opt/sms/.s2i/
     - --as-dockerfile
     - /gen-source/Dockerfile.gen
     image: quay.io/openshift-pipeline/s2i:nightly
