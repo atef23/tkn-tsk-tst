@@ -27,5 +27,5 @@ spec:
         type: image
         params:
         - name: url
-          value: image-registry.openshift-image-registry.svc:5000/opendatahub-user1/pipeline2:latest
+          value: image-registry.openshift-image-registry.svc:5000/odh/pipeline2:latest
           
