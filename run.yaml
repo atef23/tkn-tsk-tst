@@ -7,25 +7,11 @@ spec:
   serviceAccountName: pipeline
   taskRef:
     name: simple-model-s2i
-  inputs:
-    params:
+  params:
     - name: BUILDER_IMAGE
       value: quay.io/willbenton/simple-model-s2i:cached-pipeline-s2i
-    resources:
-    - name: source
-      resourceSpec:
-        type: git
-        params:
-        - name: url
-          value: https://github.com/willb/ml-workflows-notebook
-        - name: revision
-          value: develop
-  outputs:
-    resources:
-    - name: image
-      resourceSpec:
-        type: image
-        params:
-        - name: url
-          value: image-registry.openshift-image-registry.svc:5000/odh/pipeline2:latest
-          
+  resources:
+    outputs:
+      - name: builtImage
+        resourceRef:
+          name: simple-s2i-built-image
