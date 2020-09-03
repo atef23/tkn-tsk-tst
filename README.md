@@ -1,3 +1,4 @@
+
 ### Getting started
 
 Make sure that you have the Openshift Pipelines operator installed. The operator can be installed from the operator hub using the instructions [here](https://github.com/openshift/pipelines-tutorial/blob/master/install-operator.md). 
@@ -14,10 +15,20 @@ Make sure that you have the Openshift Pipelines operator installed. The operator
 
 `oc create -f https://raw.githubusercontent.com/atef23/tkn-tsk-tst/master/workflows-s2i.yaml`
 
+#### Set Resource Limits
+
+`oc apply -f https://raw.githubusercontent.com/atef23/tkn-tsk-tst/master/tkn-resource-limits.yaml`
 
 #### Run the task
 
 `oc create -f https://raw.githubusercontent.com/atef23/tkn-tsk-tst/master/run.yaml`
 
-
 This will start the task running. You can check the logs using `tkn pipeline logs -f` 
+
+#### Consolidated Run Steps
+
+    oc new-project tekton-task-run
+    oc create -f https://raw.githubusercontent.com/atef23/tkn-tsk-tst/master/simple-s2i-built-image.yaml
+    oc create -f https://raw.githubusercontent.com/atef23/tkn-tsk-tst/master/workflows-s2i.yaml
+    oc apply -f https://raw.githubusercontent.com/atef23/tkn-tsk-tst/master/tkn-resource-limits.yaml
+    oc create -f https://raw.githubusercontent.com/atef23/tkn-tsk-tst/master/run.yaml
